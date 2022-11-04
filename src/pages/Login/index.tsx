@@ -7,6 +7,7 @@ import * as yup from "yup";
 import { Container, LoginContainer, Column, Spacing, Title } from "./styles";
 import { defaultValues, IFormLogin } from "./types";
 
+
 const schema = yup
   .object({
     email: yup.string().email("E-mail inválido").required("Campo obrigatório"),
@@ -17,6 +18,10 @@ const schema = yup
   })
   .required();
 
+  function HandleLogin() {
+    alert('Login feito com sucesso!')
+  }
+
 const Login = () => {
   const {
     control,
@@ -26,7 +31,8 @@ const Login = () => {
     mode: "onBlur",
     defaultValues,
     reValidateMode: "onChange",
-  });
+  }) 
+  ;
 
   return (
     <Container>
@@ -49,7 +55,7 @@ const Login = () => {
             errorMessage={errors?.password?.message}
           />
           <Spacing />
-          <Button title="Entrar" />
+          <Button  disabled={!isValid} title="Entrar" onClick={() => HandleLogin()} />
         </Column>
       </LoginContainer>
     </Container>
